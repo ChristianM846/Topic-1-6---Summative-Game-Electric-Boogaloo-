@@ -56,7 +56,7 @@
                 }
 
                 Console.WriteLine("Now, how much would you like to bet?");
-                Console.WriteLine($"(Reminder, your current balance is {money.ToString("C")}");
+                Console.WriteLine($"(Reminder, your current balance is {money.ToString("C")})");
 
                 while (!Double.TryParse(Console.ReadLine().Trim(), out bet) || bet <= 0 || bet > money)
                 {
@@ -65,27 +65,39 @@
 
                 if (betChoice == 1)
                 {
-                    Console.WriteLine($"Okay, so you have chosen to bet {bet} on Doubles.");
+                    Console.WriteLine($"Okay, so you have chosen to bet {bet.ToString("C")} on Doubles.");
                 }
                 else if (betChoice == 2)
                 {
-                    Console.WriteLine($"Okay, so you have chosen to bet {bet} on Not Doubles.");
+                    Console.WriteLine($"Okay, so you have chosen to bet {bet.ToString("C")} on Not Doubles.");
                 }
                 else if (betChoice == 3)
                 {
-                    Console.WriteLine($"Okay, so you have chosen to bet {bet} on Even Sum.");
+                    Console.WriteLine($"Okay, so you have chosen to bet {bet.ToString("C")} on Even Sum.");
                 }
                 else if (betChoice == 4)
                 {
-                    Console.WriteLine($"Okay, so you have chosen to bet {bet} on Odd Sum.");
+                    Console.WriteLine($"Okay, so you have chosen to bet {bet.ToString("C")} on Odd Sum.");
                 }
 
                 Console.WriteLine("Press ENTER to roll the dice:");
                 Console.ReadLine();
 
+                die1.RollDie();
+                Console.WriteLine($"Die 1 = {die1}");
+                die1.DrawRoll();
+                Thread.Sleep(800);
+                die2.RollDie();
+                Console.WriteLine($"Die 2 = {die2}");
+                die2.DrawRoll();
+                Console.WriteLine();
+                Thread.Sleep(500);
+
+
 
 
                 Console.ReadLine();
+                Console.Clear();
             }
 
 
