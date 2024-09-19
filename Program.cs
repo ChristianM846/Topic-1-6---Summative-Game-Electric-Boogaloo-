@@ -63,6 +63,8 @@
                     Console.WriteLine("That is not a valid bet. Please enter a positive amount that is less than you current balance:");
                 }
 
+                bet = Math.Round(bet, 2);
+
                 if (betChoice == 1)
                 {
                     Console.WriteLine($"Okay, so you have chosen to bet {bet.ToString("C")} on Doubles.");
@@ -93,7 +95,29 @@
                 Console.WriteLine();
                 Thread.Sleep(500);
 
+                if (betChoice == 1)
+                {
+                    if (die1.Roll == die2.Roll)
+                    {
+                        Console.WriteLine("Doubles! You got it right!");
 
+                        money += bet * 2;
+
+                        Console.WriteLine($"You won {(bet * 2).ToString("C")}");
+                    }
+                }
+                else if (betChoice == 2)
+                {
+
+                }
+                else if (betChoice == 3)
+                {
+                    
+                }
+                else if (betChoice == 4)
+                {
+
+                }
 
 
                 Console.ReadLine();
