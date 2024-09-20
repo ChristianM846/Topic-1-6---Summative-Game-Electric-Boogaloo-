@@ -215,6 +215,7 @@
                         done = true;
 
                         Console.WriteLine("Okay, thank you for playing.");
+                        Console.WriteLine();
                         Console.Write($"You ended with {money.ToString("C")}, ");
 
                         if (money >= 100)
