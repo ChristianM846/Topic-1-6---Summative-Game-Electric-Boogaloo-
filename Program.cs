@@ -105,14 +105,40 @@
 
                         Console.WriteLine($"You won {(bet * 2).ToString("C")}");
                     }
+                    else
+                    {
+                        Console.WriteLine("Not Doubles. You were wrong");
+
+                        money -= bet;
+
+                        Console.WriteLine($"You lost {bet.ToString("C")}");
+                    }
                 }
                 else if (betChoice == 2)
                 {
+                    if (die1.Roll != die2.Roll)
+                    {
+                        Console.WriteLine("Not Doubles! You were right!");
 
+                        money += Math.Round((bet / 2), 2);
+
+                        Console.WriteLine($"You won {Math.Round((bet/2), 2).ToString("C")}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Doubles. You were wrong.");
+
+                        money -= bet;
+
+                        Console.WriteLine($"You lost {bet.ToString("C")}");
+                    }
                 }
                 else if (betChoice == 3)
                 {
-                    
+                    if (die1.Roll + die2.Roll == 2 || die1.Roll + die2.Roll == 4 || die1.Roll + die2.Roll == 6 || die1.Roll + die2.Roll == 8 || die1.Roll + die2.Roll == 10 || die1.Roll + die2.Roll == 12)
+                    {
+
+                    }
                 }
                 else if (betChoice == 4)
                 {
