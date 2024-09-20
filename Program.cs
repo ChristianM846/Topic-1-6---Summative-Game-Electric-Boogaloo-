@@ -6,9 +6,11 @@
         {
             Die die1 = new Die();
             Die die2 = new Die();
+            string doneChoice;
             double money = 100;
             double bet;
             int betChoice;
+            int rollSum;
             bool done = false;
 
             Console.WriteLine("Welcome to the Dice Game table");
@@ -28,8 +30,8 @@
                 Console.WriteLine();
                 Console.WriteLine("1 - Doubles (1/6 - 2x bet)");
                 Console.WriteLine("2 - Not Doubles (5/6 - 0.5x bet)");
-                Console.WriteLine("3 - Even Sum (1/2 - 1x bet)");
-                Console.WriteLine("4 - Odd Sum (1/2 - 1x bet)");
+                Console.WriteLine("3 - Even Sum (6/11 - 1x bet)");
+                Console.WriteLine("4 - Odd Sum (5/11 - 1x bet)");
                 Console.WriteLine();
                 Console.WriteLine("Please enter the number corosponding to your bet:");
 
@@ -135,19 +137,102 @@
                 }
                 else if (betChoice == 3)
                 {
-                    if (die1.Roll + die2.Roll == 2 || die1.Roll + die2.Roll == 4 || die1.Roll + die2.Roll == 6 || die1.Roll + die2.Roll == 8 || die1.Roll + die2.Roll == 10 || die1.Roll + die2.Roll == 12)
-                    {
+                    rollSum = die1.Roll + die2.Roll;
 
+                    if (rollSum == 2 || rollSum == 4 || rollSum == 6 || rollSum == 8 || rollSum == 10 || rollSum == 12)
+                    {
+                        Console.WriteLine($"The sum of the rolls is {rollSum}. That's even, you were right!");
+
+                        money += bet;
+
+                        Console.WriteLine($"You won {bet.ToString("C")}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"The sum of the rolls is {rollSum}. That's odd, you were wrong.");
+
+                        money -= bet;
+
+                        Console.WriteLine($"You lost {bet.ToString("C")}");
                     }
                 }
                 else if (betChoice == 4)
                 {
+                    rollSum = die1.Roll + die2.Roll;
 
+                    if (rollSum == 3 || rollSum == 5 || rollSum == 7 || rollSum == 9 || rollSum == 11)
+                    {
+                        Console.WriteLine($"The sum of the rolls is {rollSum}. That's odd, you were right!");
+
+                        money += bet;
+
+                        Console.WriteLine($"You won {bet.ToString("C")}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"The sum of the rolls is {rollSum}. That's even, you were wrong.");
+
+                        money -= bet;
+
+                        Console.WriteLine($"You lost {bet.ToString("C")}");
+                    }
                 }
 
+                Console.WriteLine();
+                Console.WriteLine($"You have {money.ToString("C")} remaining");
+                Console.WriteLine();
+                Thread.Sleep(1000);
 
-                Console.ReadLine();
-                Console.Clear();
+                if (money <= 0)
+                {
+                    Console.WriteLine("I'm sorry, it appears you have no money left, I must ask you to leave the table.");
+                    Console.WriteLine("Better luck next time.");
+
+                    done = true;
+                }
+                else
+                {
+                    Console.WriteLine("Would you like to play another round? (y/n):");
+
+                    doneChoice = Console.ReadLine().Trim().ToLower();
+
+                    while (doneChoice != "y" && doneChoice != "n")
+                    {
+                        Console.WriteLine("I'm sorry, I need to know if you wish to play another round. (y/n)");
+
+                        doneChoice = Console.ReadLine().Trim().ToLower();
+                    }
+
+                    if (doneChoice == "y")
+                    {
+                        Console.WriteLine("Okay, let's reset the table for another round!");
+                        Console.WriteLine("(Press ENTER to reset the table)");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                    else if (doneChoice == "n")
+                    {
+                        done = true;
+
+                        Console.WriteLine("Okay, thank you for playing.");
+                        Console.Write($"You ended with {money.ToString("C")}, ");
+
+                        if (money >= 100)
+                        {
+                            Console.WriteLine($"a total profit of {(money - 100).ToString("C")}");
+                            Thread.Sleep(1000);
+                            Console.WriteLine("Good job!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"a total loss of {Math.Abs(money - 100).ToString("C")}");
+                            Thread.Sleep(1000);
+                            Console.WriteLine("Better luck next time!");
+                        }
+                    }
+
+
+                }
             }
 
 
